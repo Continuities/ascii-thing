@@ -8,6 +8,8 @@ Shader "Custom/ASCIIShader" {
 	Properties{
 		_MainTex("Base", 2D) = "white" {}
 		_CharTex("Character Map", 2D) = "white" {}
+		_screenW("Screen Width", int) = 1920
+		_screenH("Screen Height", int) = 1080
 		_tilesX("X Characters", int) = 96
 		_tilesY("Y Characters", int) = 54
 		_tileW("Character Width", int) = 20
@@ -36,6 +38,8 @@ Shader "Custom/ASCIIShader" {
 
 				sampler2D _MainTex;
 				sampler2D _CharTex;
+				float _screenW;
+				float _screenH;
 				float _tilesX;
 				float _tilesY;
 				float _tilesW;
@@ -56,7 +60,7 @@ Shader "Custom/ASCIIShader" {
 						gray = tex2D(_contrastCurve, float2(gray, 0)).r;
 					}
 					int charIndex = round(gray * (_charCount-1));
-					float2 charCoord =float2(((1920 * i.uv.x) % _tilesW + (_tilesW-1)*charIndex)/ ((_tilesW - 1)* _charCount), saturate(((int)(1080 * i.uv.y) % _tilesH) / (_tilesH-1)));
+					float2 charCoord =float2(((_screenW * i.uv.x) % _tilesW + (_tilesW-1)*charIndex)/ ((_tilesW - 1)* _charCount), saturate(((int)(_screenH * i.uv.y) % _tilesH) / (_tilesH-1)));
 					float4 charCol = tex2D(_CharTex, charCoord);
 
 					if (charCol.r > .8f) {

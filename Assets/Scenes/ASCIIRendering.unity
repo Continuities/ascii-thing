@@ -591,10 +591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ASCIIShader: {fileID: 4800000, guid: f58530c96a4be634a85858d1334e7517, type: 3}
   CharTex: {fileID: 2800000, guid: 93cb4340ce2ba0f4f987759da1d5e5ee, type: 3}
-  tilesX: 60
-  tilesY: 36
-  charWidth: 32
-  charHeight: 30
+  tilesX: 64
+  tilesY: 54
   charCount: 92
   brightness: 0
   monochromatic: 1

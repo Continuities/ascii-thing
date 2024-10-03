@@ -20,8 +20,6 @@ namespace UnityStandardAssets.ImageEffects
         public Texture2D CharTex;
         public int tilesX = 96;
         public int tilesY = 54;
-        public int charWidth = 20;
-        public int charHeight = 20;
         public int charCount = 8;
         public float brightness = .8f;
         public bool monochromatic = false;
@@ -32,9 +30,12 @@ namespace UnityStandardAssets.ImageEffects
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
+            var charWidth = (float)Screen.width / tilesX;
+            var charHeight = (float)Screen.height / tilesY;
             m_ASCII = new Material(ASCIIShader);
             m_ASCII.SetTexture("_CharTex", CharTex);
-
+            m_ASCII.SetFloat("_screenW", Screen.width);
+            m_ASCII.SetFloat("_screenH", Screen.height);
             m_ASCII.SetFloat("_tilesX", tilesX);
             m_ASCII.SetFloat("_tilesY", tilesY);
             m_ASCII.SetFloat("_tilesW", charWidth);
