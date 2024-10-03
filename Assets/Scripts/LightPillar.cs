@@ -7,12 +7,12 @@ public class LightPillar : MonoBehaviour
   [SerializeField]
   Transform target = null;
 
-  Light light;
+  Light floatLight;
 
   void Start()
   {
     Invoke("StartAnimation", animationDelay);
-    light = GetComponentInChildren<Light>();
+    floatLight = GetComponentInChildren<Light>();
     if (target == null)
     {
       target = GameObject.FindWithTag("Player").transform;
@@ -23,7 +23,7 @@ public class LightPillar : MonoBehaviour
   {
     var axisTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
     transform.LookAt(axisTarget, Vector3.up);
-    // light.intensity = Random.Range(1.4f, 1.6f);
+    // floatLight.intensity = Random.Range(1.4f, 1.6f);
   }
 
   void StartAnimation()
