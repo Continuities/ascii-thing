@@ -3,16 +3,16 @@ using UnityEngine;
 public class LightPillar : MonoBehaviour
 {
   [SerializeField]
-  float animationDelay = 0f;
+  float minDelay = 0f;
+  [SerializeField]
+  float maxDelay = 0f;
   [SerializeField]
   Transform target = null;
 
-  Light floatLight;
-
   void Start()
   {
+    var animationDelay = Random.Range(minDelay, maxDelay);
     Invoke("StartAnimation", animationDelay);
-    floatLight = GetComponentInChildren<Light>();
     if (target == null)
     {
       target = GameObject.FindWithTag("Player").transform;
@@ -23,13 +23,11 @@ public class LightPillar : MonoBehaviour
   {
     var axisTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
     transform.LookAt(axisTarget, Vector3.up);
-    // floatLight.intensity = Random.Range(1.4f, 1.6f);
   }
 
   void StartAnimation()
   {
     var animator = GetComponent<Animator>();
     animator.enabled = true;
-    // animator.Play("Base Layer.LightPillar", 0, 0);
   }
 }
