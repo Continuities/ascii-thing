@@ -133,7 +133,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2925605792294435204}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.444, y: 0, z: 0}
 --- !u!20 &368301477471301800
 Camera:
   m_ObjectHideFlags: 0
@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4015524580248820124}
   - component: {fileID: 6480348002141558560}
+  - component: {fileID: 737868330894076570}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -309,3 +310,21 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &737868330894076570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657636358006992487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6da9379a9034524eaea8f284d429864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.3
+  maxIntensity: 1.6
+  minRange: 1.3
+  maxRange: 1.7
+  smoothing: 50

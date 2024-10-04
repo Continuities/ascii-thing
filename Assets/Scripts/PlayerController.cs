@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
   float movementForce = 50000;
   [SerializeField]
   float lookSensitivity = 1;
+  [SerializeField]
+  bool lockHoriztonalRotation = false;
+  [SerializeField]
+  bool lockVerticalRotation = false;
 
   PlayerControls controls;
   Rigidbody rb;
@@ -21,11 +25,17 @@ public class PlayerController : MonoBehaviour
   private void AimPlayer()
   {
     var look = controls.Player_Map.Look.ReadValue<Vector2>();
-    transform.Rotate(0, look.x * lookSensitivity * Time.deltaTime, 0);
+    if (!lockHoriztonalRotation)
+    {
+      transform.Rotate(0, look.x * lookSensitivity * Time.deltaTime, 0);
+    }
 
-    Vector3 cameraRotation = Camera.main.transform.rotation.eulerAngles + new Vector3(-look.y * lookSensitivity * Time.deltaTime, 0, 0);
-    cameraRotation.x = ClampAngle(cameraRotation.x, -90f, 90f);
-    Camera.main.transform.eulerAngles = cameraRotation;
+    if (!lockVerticalRotation)
+    {
+      Vector3 cameraRotation = Camera.main.transform.rotation.eulerAngles + new Vector3(-look.y * lookSensitivity * Time.deltaTime, 0, 0);
+      cameraRotation.x = ClampAngle(cameraRotation.x, -90f, 90f);
+      Camera.main.transform.eulerAngles = cameraRotation;
+    }
   }
 
   private void MovePlayer()
@@ -42,6 +52,8 @@ public class PlayerController : MonoBehaviour
     controls = new PlayerControls();
     controls.Player_Map.Enable();
     rb = GetComponent<Rigidbody>();
+    Cursor.lockState = CursorLockMode.Locked;
+    Cursor.visible = false;
   }
 
   void FixedUpdate()
